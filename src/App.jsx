@@ -3,6 +3,7 @@ import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Community from './components/Community'
 import Shop from './components/Shop'
+import OriginsStackSection from './components/OriginsStackSection'
 import About from './components/About'
 import FindUs from './components/FindUs'
 import Subscription from './components/Subscription'
@@ -50,6 +51,7 @@ export default function App() {
           <Community />
           <Shop id="shop" onAddToBag={openModal} />
         </div>
+        <OriginsStackSection />
         <About />
         <FindUs />
         <Subscription />

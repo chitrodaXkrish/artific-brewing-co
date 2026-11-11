@@ -474,6 +474,28 @@ button, input { font: inherit; }
 .btn-add { display: inline-flex; align-items: center; gap: 10px; padding: 0; background: transparent; border-radius: 0; color: var(--cream); font-size: 11px; font-weight: 700; letter-spacing: .02em; text-transform: none; }
 .btn-add:hover { background: transparent; color: #fff; transform: none; }
 .btn-add span { font-size: 16px; }
+.origins { padding: 0 clamp(24px, 6vw, 96px) 30vh; background: var(--cream); color: var(--blue); }
+.origins__header { position: sticky; top: 0; z-index: 20; display: flex; align-items: end; justify-content: space-between; gap: 30px; max-width: 1280px; margin: 0 auto 38px; padding: 24px 0 20px; border-bottom: 1px solid rgba(53, 6, 22, .28); background: var(--cream); }
+.origins__eyebrow { margin-bottom: 9px; color: #785f62; }
+.origins__header h2 { margin: 0; color: var(--blue); font-family: var(--font-display); font-size: clamp(48px, 7vw, 92px); font-weight: 700; line-height: .9; }
+.origins__intro { max-width: 250px; margin: 0 0 5px; color: #785f62; font-family: var(--font-serif); font-size: 19px; line-height: 1.3; }
+.origins__deck { max-width: 1180px; margin: 0 auto; padding: 0 0 12vh; list-style: none; }
+.origins__stack-item { position: sticky; top: var(--origins-stack-top); height: clamp(360px, 48vh, 430px); margin-bottom: clamp(96px, 16vh, 156px); }
+.origins-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; height: 100%; overflow: hidden; padding: clamp(23px, 4vw, 48px); border: 1px solid rgba(53, 6, 22, .2); border-radius: 6px; box-shadow: 0 9px 22px rgba(53, 6, 22, .09); }
+.origins-card--dark { background: var(--blue); color: var(--cream); }
+.origins-card--light { background: #fff4e5; color: var(--blue); }
+.origins-card__meta { display: flex; align-items: center; gap: 15px; padding-bottom: 14px; border-bottom: 1px solid currentColor; }
+.origins-card__number { font-family: var(--font-serif); font-size: clamp(35px, 5vw, 58px); line-height: .8; }
+.origins-card__label, .origins-card__edition, .origins-card__detail-label { font-size: 9px; font-weight: 700; letter-spacing: .16em; }
+.origins-card__edition { margin-left: auto; opacity: .66; }
+.origins-card__body { display: grid; grid-template-columns: 1fr .85fr; align-items: end; gap: clamp(24px, 6vw, 90px); padding: 22px 0; }
+.origins-card__headline { max-width: 620px; margin: 0; font-family: var(--font-display); font-size: clamp(29px, 4.1vw, 58px); font-weight: 700; line-height: .98; }
+.origins-card__detail { max-width: 450px; }
+.origins-card__detail-label { margin: 0 0 10px; opacity: .7; }
+.origins-card__detail strong { display: block; font-family: var(--font-serif); font-size: clamp(31px, 4vw, 54px); font-weight: 400; line-height: 1; }
+.origins-card__description { max-width: 410px; margin: 14px 0 0; font-size: clamp(12px, 1.1vw, 15px); line-height: 1.6; opacity: .85; }
+.origins-card__rule { position: absolute; right: 0; bottom: 0; left: 0; height: 5px; background: currentColor; opacity: .2; }
+.origins__note { max-width: 1180px; margin: 0 auto; padding-top: 20px; border-top: 1px solid rgba(53, 6, 22, .2); color: #785f62; font-size: 10px; line-height: 1.5; }
 .about { background: #eadbc7; color: var(--black); }
 .about__intro { max-width: 970px; margin: 0 auto 76px; text-align: center; }
 .about__intro h2 { max-width: 930px; margin: 0 auto 28px; font-size: clamp(43px, 5.5vw, 72px); line-height: 1.12; }
@@ -588,6 +610,21 @@ button, input { font: inherit; }
   .hero__title { font-size: clamp(38px, 11vw, 58px); }
   .shop, .about, .find-us, .journal { padding: 76px 22px; }
   .shop { padding-top: 140px; }
+  .origins { padding: 0 20px 22vh; }
+  .origins__header { align-items: start; flex-direction: column; gap: 10px; margin-bottom: 26px; padding: 20px 0 16px; }
+  .origins__header h2 { font-size: clamp(38px, 11vw, 54px); }
+  .origins__intro { max-width: 100%; font-size: 15px; }
+  .origins__deck { padding-bottom: 8vh; }
+  .origins__stack-item { top: var(--origins-mobile-top); height: auto; min-height: 410px; margin-bottom: 12vh; }
+  .origins-card { padding: 20px; }
+  .origins-card__meta { gap: 10px; padding-bottom: 12px; }
+  .origins-card__number { font-size: 38px; }
+  .origins-card__label, .origins-card__edition { font-size: 7px; letter-spacing: .12em; }
+  .origins-card__body { grid-template-columns: 1fr; align-content: space-between; gap: 24px; padding: 22px 0; }
+  .origins-card__headline { font-size: clamp(27px, 7.3vw, 37px); }
+  .origins-card__detail strong { font-size: clamp(30px, 8vw, 40px); }
+  .origins-card__description { margin-top: 10px; font-size: 12px; }
+  .origins__note { font-size: 9px; }
   .community { padding: 90px 22px 76px; }
   .community__inner { grid-template-columns: 1fr; gap: 36px; }
   .community__title { font-size: clamp(34px, 9.3vw, 48px); }
