@@ -34,10 +34,9 @@ export default function Community() {
       </div>
       <div className="community__inner">
         <div className="community__copy">
-          <p className="eyebrow">A circle made over coffee</p>
+          <p className="eyebrow community__eyebrow"><span>A circle made over coffee</span></p>
           <h2 className="community__title" id="community-title">
-            <span>MORE THAN A</span>
-            <span>COFFEE KIND OF</span>
+            <span className="community__title-lead">MORE THAN A<br />COFFEE KIND OF</span>
             <span className="community__title-highlight">COMMUNITY.</span>
           </h2>
           <p className="community__description">A growing circle of coffee lovers, makers, creators and curious minds, brought together by good brews, better conversations and a shared love for coffee.</p>
