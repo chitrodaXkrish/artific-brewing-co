@@ -9,6 +9,7 @@ import Journal from './components/Journal'
 import Footer from './components/Footer'
 import AddToBagModal from './components/AddToBagModal'
 import CartDrawer from './components/CartDrawer'
+import ShutterIntro from './components/ShutterIntro'
 import './index.css'
 
 export default function App() {
@@ -40,6 +41,7 @@ export default function App() {
 
   return (
     <>
+      <ShutterIntro />
       <Nav itemCount={itemCount} openCart={() => setCartOpen(true)} />
       <main>
         <div className="hero-shop-stage">
