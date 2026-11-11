@@ -422,7 +422,7 @@ button, input { font: inherit; }
 .button--light { background: var(--cream); color: var(--black); }
 .button--light:hover { background: #e8cba9; }
 .shop, .about, .find-us, .journal { min-height: 0; padding: clamp(76px, 10vw, 138px) clamp(24px, 7.2vw, 112px); }
-.community { position: relative; z-index: 2; isolation: isolate; overflow: visible; padding: clamp(88px, 9vw, 132px) clamp(24px, 6vw, 96px); background: var(--cream); color: var(--blue); }
+.community { position: relative; z-index: 2; isolation: isolate; overflow: visible; padding: clamp(88px, 9vw, 132px) clamp(24px, 6vw, 96px); background: transparent; color: var(--blue); }
 .community__cloud { position: absolute; z-index: 1; top: clamp(-410px, -29vw, -280px); left: 0; width: 100%; height: auto; pointer-events: none; user-select: none; will-change: transform; }
 .community__cloud img { display: block; width: 100%; height: auto; object-fit: cover; pointer-events: none; }
 .community__inner { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); align-items: center; gap: clamp(42px, 6vw, 92px); max-width: 1440px; margin: auto; }
