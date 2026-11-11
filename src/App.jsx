@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import Community from './components/Community'
 import Shop from './components/Shop'
 import About from './components/About'
 import FindUs from './components/FindUs'
@@ -46,6 +47,7 @@ export default function App() {
       <main>
         <div className="hero-shop-stage">
           <Hero />
+          <Community />
           <Shop id="shop" onAddToBag={openModal} />
         </div>
         <About />

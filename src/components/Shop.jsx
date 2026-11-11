@@ -1,6 +1,3 @@
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-
 const PRODUCTS = [
   {
     id: 'original',
@@ -35,36 +32,8 @@ const PRODUCTS = [
 ]
 
 export default function Shop({ id, onAddToBag }) {
-  const cloudRef = useRef(null)
-
-  useEffect(() => {
-    const cloud = cloudRef.current
-    if (!cloud || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-    const section = cloud.parentElement
-    const setCloudY = gsap.quickTo(cloud, 'y', { duration: 0.35, ease: 'power2.out' })
-    const updateCloudPosition = () => {
-      const { top, height } = section.getBoundingClientRect()
-      const progress = Math.max(0, Math.min(1, (window.innerHeight - top) / (window.innerHeight + height)))
-      setCloudY(-progress * 72)
-    }
-
-    window.addEventListener('scroll', updateCloudPosition, { passive: true })
-    window.addEventListener('resize', updateCloudPosition)
-    updateCloudPosition()
-
-    return () => {
-      window.removeEventListener('scroll', updateCloudPosition)
-      window.removeEventListener('resize', updateCloudPosition)
-      gsap.killTweensOf(cloud)
-    }
-  }, [])
-
   return (
     <section className="shop" id={id}>
-      <div className="shop__cloud" ref={cloudRef} aria-hidden="true">
-        <img src="/images/cloud-overlay.png" alt="" />
-      </div>
       <div className="section-heading shop__content">
         <div>
           <p className="eyebrow">Find your everyday</p>
