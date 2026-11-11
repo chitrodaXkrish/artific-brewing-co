@@ -430,7 +430,7 @@ button, input { font: inherit; }
 .community .eyebrow { color: #785f62; }
 .community__eyebrow span { display: inline-block; padding: 8px 11px; border: 1px solid rgba(53, 6, 22, .45); background: var(--cream); box-shadow: 3px 3px 0 rgba(53, 6, 22, .12); color: var(--blue); }
 .community__title { display: grid; gap: .02em; margin: 0; color: var(--blue); font-family: var(--font-display); font-size: clamp(38px, 4.6vw, 72px); font-weight: 700; line-height: .96; }
-.community__title-lead { display: block; width: fit-content; padding: .08em .12em .12em; border: 1px solid #785f62; color: var(--cream); }
+.community__title-lead { color: var(--cream); -webkit-text-stroke: 1px #785f62; paint-order: stroke fill; }
 .community__title-highlight { width: fit-content; padding: .02em .11em .07em; background: var(--blue); color: var(--cream); }
 .community__description { max-width: 540px; margin: 28px 0 32px; color: #392b27; font-size: clamp(14px, 1.2vw, 18px); line-height: 1.65; }
 .community__link { display: flex; align-items: center; justify-content: space-between; gap: 20px; max-width: 540px; padding: 14px 0; border-top: 1px solid var(--blue); border-bottom: 1px solid var(--blue); color: var(--blue); font-size: 13px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
