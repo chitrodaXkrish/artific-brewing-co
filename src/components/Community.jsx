@@ -45,14 +45,11 @@ export default function Community() {
           </a>
         </div>
         <div className="community__collage">
-          <div className="community__paper" aria-hidden="true" />
           <figure className="community__photo">
-            <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1400&q=85" alt="Friends sharing coffee and conversation around a table" loading="lazy" />
+            <img src="/community.png" alt="Friends sharing coffee and conversation around a table" loading="lazy" />
             <figcaption>Good brews. Better company.</figcaption>
           </figure>
-          <div className="community__stamp" aria-hidden="true"><strong>ARTIFIC</strong><span>BREWING CO.</span><small>EST. 2022</small></div>
-          <div className="community__tape" aria-hidden="true" />
-          <p className="community__postmark" aria-hidden="true">A NOTE FROM YOUR COFFEE CIRCLE</p>
+          <img className="community__stamp" src="/stamp.png" alt="Artific India commemorative stamp" />
         </div>
       </div>
     </section>
