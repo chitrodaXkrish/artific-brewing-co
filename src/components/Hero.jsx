@@ -9,6 +9,7 @@ export default function Hero() {
         <source media="(max-width: 760px)" srcSet="/hero-banner-mobile.png" />
         <img className="hero__image" src="/hero-banner.png" alt="" fetchPriority="high" />
       </picture>
+      <img className="hero__cloud" src="/images/cloud-overlay.png" alt="" aria-hidden="true" />
       <h1 className="hero__title"><span>SABR KE</span><em>GHOOT</em></h1>
       <a className="hero__cta" href="#waitlist">GET EARLY ACCESS <span aria-hidden="true">↗</span></a>
     </section>
