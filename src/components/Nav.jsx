@@ -14,9 +14,7 @@ export default function Nav({ itemCount, openCart }) {
       </a>
       <nav className={`nav__links${menuOpen ? ' nav__links--open' : ''}`} aria-label="Main navigation">
         <a href="#shop" onClick={closeMenu}>Shop</a>
-        <a href="#about" onClick={closeMenu}>Our story</a>
-        <a href="#find-us" onClick={closeMenu}>The brew</a>
-        <a href="#journal" onClick={closeMenu}>Journal</a>
+        <a href="#origins" onClick={closeMenu}>Our story</a>
       </nav>
       <button className="nav__bag" id="nav-bag-btn" onClick={openCart} aria-label={`Open bag, ${itemCount} items`}>
         Bag <span>{String(itemCount).padStart(2, '0')}</span>

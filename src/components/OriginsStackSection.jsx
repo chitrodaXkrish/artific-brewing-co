@@ -43,7 +43,7 @@ const ORIGIN_CARDS = [
 
 export default function OriginsStackSection() {
   return (
-    <section className="origins" aria-labelledby="origins-title">
+    <section className="origins" id="origins" aria-labelledby="origins-title">
       <header className="origins__header">
         <div>
           <p className="eyebrow origins__eyebrow">A closer look at every cup</p>

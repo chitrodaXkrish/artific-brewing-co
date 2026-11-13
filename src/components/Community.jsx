@@ -39,7 +39,7 @@ export default function Community() {
             <span className="community__title-lead">MORE THAN A<br />COFFEE KIND OF</span>
             <span className="community__title-highlight">COMMUNITY.</span>
           </h2>
-          <p className="community__description">A growing circle of coffee lovers, makers, creators and curious minds, brought together by good brews, better conversations and a shared love for coffee.</p>
+          <p className="community__description"><span>A growing circle of coffee lovers, makers, creators and curious minds, brought together by good brews, better conversations and a shared love for coffee.</span></p>
           <a className="community__link" href="#find-us">
             <span>Be part of the circle</span><span className="community__link-arrow" aria-hidden="true">↗</span>
           </a>

@@ -27,12 +27,12 @@ export default function Journal() {
           <p className="eyebrow">A little more to savour</p>
           <h2>Notes from<br /><em>around here.</em></h2>
         </div>
-        <a className="text-link" href="#about">All our stories <span aria-hidden="true">↗</span></a>
+        <a className="text-link" href="#origins">All our stories <span aria-hidden="true">↗</span></a>
       </div>
       <div className="journal__grid">
         {STORIES.map(story => (
           <article className="journal-card" key={story.title}>
-            <a href="#about" className="journal-card__image" aria-label={`Read: ${story.title}`}>
+            <a href="#origins" className="journal-card__image" aria-label={`Read: ${story.title}`}>
               <img src={story.image} alt={story.alt} loading="lazy" />
               <span aria-hidden="true">↗</span>
             </a>

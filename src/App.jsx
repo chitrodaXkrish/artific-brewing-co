@@ -4,10 +4,6 @@ import Hero from './components/Hero'
 import Community from './components/Community'
 import Shop from './components/Shop'
 import OriginsStackSection from './components/OriginsStackSection'
-import About from './components/About'
-import FindUs from './components/FindUs'
-import Subscription from './components/Subscription'
-import Journal from './components/Journal'
 import Footer from './components/Footer'
 import AddToBagModal from './components/AddToBagModal'
 import CartDrawer from './components/CartDrawer'
@@ -52,10 +48,6 @@ export default function App() {
           <Shop id="shop" onAddToBag={openModal} />
         </div>
         <OriginsStackSection />
-        <About />
-        <FindUs />
-        <Subscription />
-        <Journal />
         <Footer />
       </main>
       {modal && (
