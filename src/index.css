@@ -744,9 +744,9 @@ button, input { font: inherit; }
   .nav__links a { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .nav__links a::after { display: none; }
   .hero__backdrop { position: relative; top: auto; z-index: 3; width: 100%; height: 100vh; height: 100svh; min-height: 0; margin-bottom: 0; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, #350616 0%, #350616 48%, #4b0b1d 100%); }
-  .hero__image { position: absolute; z-index: 0; top: 34%; left: 50%; width: 100%; height: auto; max-height: none; object-fit: contain; object-position: center; transform: translate(-50%, -50%); animation: none; }
-  .hero__cloud { position: absolute; z-index: 1; bottom: -16vw; left: 50%; display: block; width: 100%; max-width: 760px; height: auto; transform: translateX(-50%); pointer-events: none; user-select: none; }
-  .hero__title { top: 34%; z-index: 2; width: 94%; font-size: clamp(38px, 10.8vw, 58px); }
+  .hero__image { position: absolute; z-index: 0; top: 27%; left: 50%; width: 100%; height: auto; max-height: none; object-fit: contain; object-position: center; transform: translate(-50%, -50%); animation: none; }
+  .hero__cloud { position: absolute; z-index: 1; bottom: 10vw; left: 50%; display: block; width: 100%; max-width: 760px; height: auto; transform: translateX(-50%); pointer-events: none; user-select: none; }
+  .hero__title { top: 27%; z-index: 2; width: 94%; font-size: clamp(38px, 10.8vw, 58px); }
   .hero__cta { top: auto; bottom: calc(30px + env(safe-area-inset-bottom)); z-index: 3; }
   .shop, .about, .find-us, .journal { padding: 76px 22px; }
   .origins { padding: 96px 20px 22vh; }
