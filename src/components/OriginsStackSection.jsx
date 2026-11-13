@@ -57,8 +57,8 @@ export default function OriginsStackSection() {
             className="origins__stack-item"
             key={card.number}
             style={{
-              '--origins-stack-top': `${160 + index * 28}px`,
-              '--origins-mobile-top': `${132 + index * 17}px`,
+              '--origins-stack-top': `${250 + index * 28}px`,
+              '--origins-mobile-top': `${205 + index * 17}px`,
               zIndex: index + 1,
             }}
           >
