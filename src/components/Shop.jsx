@@ -2,34 +2,36 @@ import { formatMoney } from '../lib/money'
 
 const PRODUCTS = [
   {
-    id: 'original',
-    name: 'Original',
-    sub: 'Cold Brew · Decaf',
+    id: 'desi-coffee',
+    name: 'Desi Coffee',
     img: '/images/can-original.png',
-    price: 29,
-    perCan: `12 cans · ${formatMoney(29 / 12)} each`,
-    badge: 'Bestseller',
-    note: 'Bright, easy-drinking, always in season',
+    prices: { 1: 79, 4: 299, 12: 899 },
+    badge: 'Classic',
+    note: 'A familiar favourite, reimagined with smooth coffee character and a balanced, refreshing finish.',
   },
   {
-    id: 'dark-chocolate',
-    name: 'Dark Chocolate',
-    sub: 'Cold Brew · Decaf',
+    id: 'noir-americano',
+    name: 'Noir Americano',
+    img: '/images/can-original.png',
+    prices: { 1: 79, 4: 299, 12: 899 },
+    badge: 'Bold & smooth',
+    note: 'A crisp, chilled take on the Americano, with a clean coffee profile and a bold, refreshing finish.',
+  },
+  {
+    id: 'mocha-amaro',
+    name: 'Mocha Amaro',
     img: '/images/can-dark-chocolate.png',
-    price: 29,
-    perCan: `12 cans · ${formatMoney(29 / 12)} each`,
-    badge: 'Deep & smooth',
-    note: 'A softer finish with a little sweetness',
+    prices: { 1: 119, 4: 399, 12: 1129 },
+    badge: 'Coffee & chocolate',
+    note: 'Coffee and chocolate notes come together in a rounded, layered drink with a smooth, satisfying finish.',
   },
   {
-    id: 'vanilla-oat',
-    name: 'Vanilla Oat',
-    sub: 'Cold Brew · Decaf',
+    id: 'vanilla-aurea',
+    name: 'Vanilla Aurea',
     img: '/images/can-vanilla-oat.png',
-    price: 29,
-    perCan: `12 cans · ${formatMoney(29 / 12)} each`,
-    badge: 'Oat milk',
-    note: 'Creamy, balanced, and made to linger',
+    prices: { 1: 99, 4: 349, 12: 999 },
+    badge: 'Soft vanilla',
+    note: 'Smooth coffee meets gentle vanilla notes for an aromatic cup with a balanced, softly sweet finish.',
   },
 ]
 
@@ -52,10 +54,10 @@ export default function Shop({ id, onAddToBag }) {
             </div>
             <div className="product-card__details">
               <div><h3 className="product-card__name">{p.name}</h3><p className="product-card__sub">{p.note}</p></div>
-              <span className="product-card__price-main">{formatMoney(p.price)}</span>
+              <span className="product-card__price-main">From {formatMoney(Math.min(...Object.values(p.prices)))}</span>
             </div>
             <div className="product-card__footer">
-              <span className="product-card__price-per">{p.perCan}</span>
+              <span className="product-card__price-per">Available in 1, 4 &amp; 12 pieces</span>
               <button
                 className="btn-add"
                 id={`add-${p.id}`}

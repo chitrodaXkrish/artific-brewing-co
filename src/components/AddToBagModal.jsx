@@ -1,11 +1,7 @@
 import { useState, useEffect } from 'react'
 import { formatMoney } from '../lib/money'
 
-const PACKS = [
-  { size: 1, label: 'Pieces', priceNum: 2.50 },
-  { size: 4, label: 'Pieces', priceNum: 9.99 },
-  { size: 12, label: 'Pieces', priceNum: 29.00 },
-]
+const PACKS = [1, 4, 12]
 
 export default function AddToBagModal({ product, onClose, onAdd }) {
   const [packIdx, setPackIdx] = useState(1)
@@ -18,17 +14,18 @@ export default function AddToBagModal({ product, onClose, onAdd }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const pack = PACKS[packIdx]
-  const total = (pack.priceNum * qty).toFixed(2)
+  const packSize = PACKS[packIdx]
+  const unitPrice = product.prices[packSize]
+  const total = (unitPrice * qty).toFixed(2)
 
   const handleAdd = () => {
     onAdd({
       id: product.id,
       name: product.name,
       img: product.img,
-      pack: pack.size,
+      pack: packSize,
       qty,
-      price: pack.priceNum,
+      price: unitPrice,
       total: parseFloat(total),
     })
   }
@@ -41,23 +38,23 @@ export default function AddToBagModal({ product, onClose, onAdd }) {
           <img className="modal__product-img" src={product.img} alt={product.name} />
           <div>
             <div className="modal__product-name">{product.name}</div>
-            <div className="modal__product-sub">Cold Brew · Decaf · 250ML</div>
+            <div className="modal__product-sub">Coffee</div>
           </div>
         </div>
 
         <div className="modal__label">Pack Size</div>
         <div className="modal__pack-options">
-          {PACKS.map((p, i) => (
+          {PACKS.map((size, i) => (
             <button
-              key={p.size}
+              key={size}
               className={`pack-option${packIdx === i ? ' active' : ''}`}
               onClick={() => setPackIdx(i)}
-              id={`pack-${p.size}`}
+              id={`pack-${size}`}
               aria-pressed={packIdx === i}
             >
-              <div className="pack-option__size">{p.size}</div>
-              <div className="pack-option__label">{p.label}</div>
-              <div className="pack-option__price">{formatMoney(p.priceNum)}</div>
+              <div className="pack-option__size">{size}</div>
+              <div className="pack-option__label">Pieces</div>
+              <div className="pack-option__price">{formatMoney(product.prices[size])}</div>
             </button>
           ))}
         </div>

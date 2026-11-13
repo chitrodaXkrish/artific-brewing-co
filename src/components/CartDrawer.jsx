@@ -10,7 +10,7 @@ function StepBag({ cart, onRemove }) {
     <div className="empty-cart">
       <div className="empty-cart__icon">🛍️</div>
       <div className="empty-cart__title">Your bag is empty</div>
-      <div className="empty-cart__sub">Add some No Caff to get started.</div>
+      <div className="empty-cart__sub">Add a coffee to get started.</div>
     </div>
   )
   return (
@@ -32,11 +32,12 @@ function StepBag({ cart, onRemove }) {
         <span>Total</span>
         <span>{formatMoney(total)}</span>
       </div>
+      <p className="shipping-disclosure">Shipping will be charged extra. We’ll share the shipping cost when the products go live.</p>
     </>
   )
 }
 
-function StepDelivery({ form, setForm, shipping, setShipping }) {
+function StepDelivery({ form, setForm }) {
   const update = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }))
   return (
     <div>
@@ -99,20 +100,7 @@ function StepDelivery({ form, setForm, shipping, setShipping }) {
           <input className="form-input" id="country" autoComplete="country-name" value={form.country} onChange={update('country')} placeholder="Country" required />
         </div>
       </div>
-      <div className="shipping-options">
-        {[
-          { id: 'standard', name: 'Standard Shipping', eta: '3–5 business days', price: 'Free' },
-        ].map(opt => (
-          <label key={opt.id} className={`shipping-option${shipping === opt.id ? ' active' : ''}`}>
-            <input type="radio" name="shipping" value={opt.id} checked={shipping === opt.id} onChange={() => setShipping(opt.id)} />
-            <div className="shipping-option__label">
-              <div className="shipping-option__name">{opt.name}</div>
-              <div className="shipping-option__eta">{opt.eta}</div>
-            </div>
-            <span className="shipping-option__price">{opt.price}</span>
-          </label>
-        ))}
-      </div>
+      <p className="shipping-disclosure">Shipping will be charged separately. We’ll communicate the shipping cost when the products go live.</p>
     </div>
   )
 }
@@ -121,15 +109,13 @@ function StepPayment() {
   return (
     <div className="preorder-payment-note">
       <p className="eyebrow">Payment comes later</p>
-      <p>Your pre-order request will be sent to our team. We’ll contact you to confirm availability and arrange payment. No card details are collected here.</p>
+      <p>Your pre-order request will be sent to our team. We’ll contact you to confirm availability, shipping charges, and payment when the products go live. No card details are collected here.</p>
     </div>
   )
 }
 
-function StepReview({ cart, shipping }) {
+function StepReview({ cart }) {
   const subtotal = cart.reduce((s, c) => s + c.total, 0)
-  const shippingCost = 0
-  const total = subtotal + shippingCost
   return (
     <div className="confirmation">
       <div className="confirmation__icon">✓</div>
@@ -147,11 +133,11 @@ function StepReview({ cart, shipping }) {
         ))}
         <div className="order-summary-card__row">
           <span>Shipping</span>
-          <span>{shippingCost === 0 ? 'Free' : formatMoney(shippingCost)}</span>
+          <span>Charged separately</span>
         </div>
         <div className="order-summary-card__row order-summary-card__total">
-          <span>Total</span>
-          <span>{formatMoney(total)}</span>
+          <span>Products subtotal</span>
+          <span>{formatMoney(subtotal)}</span>
         </div>
       </div>
       <p className="preorder-followup">No payment has been collected. We’ll reach out before preparing or shipping your order.</p>
@@ -220,9 +206,9 @@ export default function CartDrawer({ cart, onClose, onRemove, onPlaceOrder, onCl
 
         <div className="cart-drawer__body">
           {step === 0 && <StepBag cart={cart} onRemove={onRemove} />}
-          {step === 1 && <StepDelivery form={form} setForm={setForm} shipping={shipping} setShipping={setShipping} />}
+          {step === 1 && <StepDelivery form={form} setForm={setForm} />}
           {step === 2 && <StepPayment />}
-          {step === 3 && <StepReview cart={cart} shipping={shipping} />}
+          {step === 3 && <StepReview cart={cart} />}
           {submitError && <p className="preorder-error" role="alert">{submitError}</p>}
         </div>
 

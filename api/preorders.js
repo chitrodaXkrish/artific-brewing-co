@@ -2,8 +2,12 @@ import { readJson, sendJson } from '../server/admin-auth.js'
 import { supabaseRequest } from '../server/supabase.js'
 
 const text = (value, max = 200) => String(value || '').trim().slice(0, max)
-const PRODUCT_NAMES = { original: 'Original', 'dark-chocolate': 'Dark Chocolate', 'vanilla-oat': 'Vanilla Oat' }
-const PACK_PRICES = { 1: 2.50, 4: 9.99, 12: 29 }
+const PRODUCTS = {
+  'desi-coffee': { name: 'Desi Coffee', prices: { 1: 79, 4: 299, 12: 899 } },
+  'noir-americano': { name: 'Noir Americano', prices: { 1: 79, 4: 299, 12: 899 } },
+  'mocha-amaro': { name: 'Mocha Amaro', prices: { 1: 119, 4: 399, 12: 1129 } },
+  'vanilla-aurea': { name: 'Vanilla Aurea', prices: { 1: 99, 4: 349, 12: 999 } },
+}
 
 export default async function createPreorder(request, response) {
   if (request.method !== 'POST') {
@@ -17,17 +21,18 @@ export default async function createPreorder(request, response) {
     const email = text(customer.email, 254).toLowerCase()
     const phone = text(customer.phone, 16)
     const rawItems = Array.isArray(payload.items) ? payload.items.slice(0, 20) : []
-    if (rawItems.some(item => !PRODUCT_NAMES[text(item.productId, 80)] || !PACK_PRICES[Number(item.pack)])) {
+    if (rawItems.some(item => !PRODUCTS[text(item.productId, 80)]?.prices[Number(item.pack)])) {
       return sendJson(response, 400, { error: 'One of the selected products is unavailable.' })
     }
     const items = rawItems.map(item => {
       const productId = text(item.productId, 80)
       const pack = Number(item.pack)
       const quantity = Math.max(1, Math.min(100, Number(item.quantity) || 1))
-      const unitPrice = PACK_PRICES[pack]
+      const product = PRODUCTS[productId]
+      const unitPrice = product.prices[pack]
       return {
         productId,
-        name: PRODUCT_NAMES[productId],
+        name: product.name,
         pack,
         quantity,
         unitPrice,
