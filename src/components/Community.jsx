@@ -6,7 +6,7 @@ export default function Community() {
 
   useEffect(() => {
     const cloud = cloudRef.current
-    if (!cloud || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    if (!cloud || window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.matchMedia('(max-width: 760px)').matches) return
 
     const section = cloud.parentElement
     const setCloudY = gsap.quickTo(cloud, 'y', { duration: 0.35, ease: 'power2.out' })

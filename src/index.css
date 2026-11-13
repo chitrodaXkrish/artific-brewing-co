@@ -763,6 +763,7 @@ button, input { font: inherit; }
   .origins-card__description { margin-top: 10px; font-size: 12px; }
   .origins__note { font-size: 9px; }
   .community { padding: 90px 22px 76px; }
+  .community__cloud { top: 13vw; transform: none !important; }
   .community__inner { grid-template-columns: 1fr; gap: 36px; }
   .community__title { font-size: clamp(34px, 9.3vw, 48px); }
   .community__description { margin: 21px 0 25px; font-size: 15px; line-height: 1.6; }
