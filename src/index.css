@@ -742,9 +742,10 @@ button, input { font: inherit; }
   .nav__links--open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
   .nav__links a { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .nav__links a::after { display: none; }
-  .hero__backdrop { height: min(760px, 100svh); min-height: 620px; background: #350616; }
-  .hero__image { object-fit: contain; object-position: center; }
+  .hero__backdrop { position: relative; top: auto; z-index: 3; height: auto; min-height: 0; aspect-ratio: 1672 / 941; margin-bottom: 100px; overflow: visible; background: #350616; }
+  .hero__image { display: block; height: 100%; object-fit: contain; object-position: center; }
   .hero__title { font-size: clamp(38px, 11vw, 58px); }
+  .hero__cta { top: calc(100% + 22px); }
   .shop, .about, .find-us, .journal { padding: 76px 22px; }
   .origins { padding: 96px 20px 22vh; }
   .origins__header { top: 82px; align-items: start; flex-direction: column; gap: 10px; margin-bottom: 26px; padding: 20px 0 16px; }
