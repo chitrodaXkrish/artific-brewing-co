@@ -84,8 +84,8 @@ export default function App() {
               <Community />
               <Shop id="shop" onAddToBag={openModal} />
             </div>
-            <OriginsStackSection />
             <WaitlistSection />
+            <OriginsStackSection />
           </>
         )}
         <Footer />
