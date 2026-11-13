@@ -15,6 +15,7 @@ export default async function createPreorder(request, response) {
     const customer = payload.customer || {}
     const shipping = payload.shipping || {}
     const email = text(customer.email, 254).toLowerCase()
+    const phone = text(customer.phone, 16)
     const rawItems = Array.isArray(payload.items) ? payload.items.slice(0, 20) : []
     if (rawItems.some(item => !PRODUCT_NAMES[text(item.productId, 80)] || !PACK_PRICES[Number(item.pack)])) {
       return sendJson(response, 400, { error: 'One of the selected products is unavailable.' })
@@ -36,7 +37,7 @@ export default async function createPreorder(request, response) {
         lineTotal: Number((discountedPrice * quantity).toFixed(2)),
       }
     })
-    if (!text(customer.firstName, 80) || !text(customer.lastName, 80) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !text(shipping.address, 250) || !text(shipping.city, 100) || !text(shipping.postalCode, 32) || !items.length) {
+    if (!text(customer.firstName, 80) || !text(customer.lastName, 80) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\+91\d{10}$/.test(phone) || !text(shipping.address, 250) || !text(shipping.city, 100) || !text(shipping.postalCode, 32) || !items.length) {
       return sendJson(response, 400, { error: 'Please complete your contact, shipping, and order details.' })
     }
 
@@ -47,7 +48,7 @@ export default async function createPreorder(request, response) {
       body: {
         customer_name: `${text(customer.firstName, 80)} ${text(customer.lastName, 80)}`,
         customer_email: email,
-        customer_phone: text(customer.phone, 40) || null,
+        customer_phone: phone,
         items,
         shipping: {
           address: text(shipping.address, 250),

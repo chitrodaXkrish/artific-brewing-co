@@ -56,7 +56,24 @@ function StepDelivery({ form, setForm, shipping, setShipping }) {
       </div>
       <div className="form-group">
         <label className="form-label" htmlFor="phone">Phone</label>
-        <input className="form-input" id="phone" type="tel" autoComplete="tel" value={form.phone} onChange={update('phone')} required />
+        <div className="phone-input">
+          <span className="phone-input__prefix" aria-hidden="true">+91</span>
+          <input
+            className="form-input"
+            id="phone"
+            type="tel"
+            autoComplete="tel-national"
+            inputMode="numeric"
+            pattern="[0-9]{10}"
+            minLength={10}
+            maxLength={10}
+            value={form.phone}
+            onChange={e => setForm(f => ({ ...f, phone: e.target.value.replace(/\D/g, '').slice(0, 10) }))}
+            aria-describedby="phone-hint"
+            required
+          />
+        </div>
+        <span className="phone-input__hint" id="phone-hint">Enter your 10-digit mobile number</span>
       </div>
       <div className="form-group">
         <label className="form-label" htmlFor="address">Address</label>
@@ -156,7 +173,7 @@ export default function CartDrawer({ cart, onClose, onRemove, onPlaceOrder, onCl
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const deliveryComplete = Boolean(form.first.trim() && form.last.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) && form.phone.trim() && form.address.trim() && form.city.trim() && form.region.trim() && form.postcode.trim() && form.country.trim())
+  const deliveryComplete = Boolean(form.first.trim() && form.last.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) && /^\d{10}$/.test(form.phone) && form.address.trim() && form.city.trim() && form.region.trim() && form.postcode.trim() && form.country.trim())
   const canProceed = step === 0 ? cart.length > 0 : step === 1 ? deliveryComplete : true
 
   const btnLabel = ['Proceed to Delivery', 'Proceed to Payment', submitting ? 'Sending…' : 'Submit Pre-order', 'Close'][step]
@@ -170,7 +187,7 @@ export default function CartDrawer({ cart, onClose, onRemove, onPlaceOrder, onCl
     setSubmitError('')
     try {
       await onPlaceOrder({
-        customer: { firstName: form.first, lastName: form.last, email: form.email, phone: form.phone },
+        customer: { firstName: form.first, lastName: form.last, email: form.email, phone: `+91${form.phone}` },
         shipping: { address: form.address, city: form.city, region: form.region, postalCode: form.postcode, country: form.country, method: shipping },
         paymentMethod: 'To be arranged',
       })
