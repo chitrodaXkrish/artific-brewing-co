@@ -64,7 +64,7 @@ export default async function createPreorder(request, response) {
         shipping_fee: shippingFee,
         tax: 0,
         total: subtotal + shippingFee,
-        currency: 'USD',
+        currency: 'INR',
       },
       prefer: 'return=representation',
     })

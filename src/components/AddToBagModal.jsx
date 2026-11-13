@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
+import { formatMoney } from '../lib/money'
 
 const PACKS = [
-  { size: 4, label: 'Taster', price: '$9.99', priceNum: 9.99 },
-  { size: 12, label: 'Regular', price: '$29.00', priceNum: 29.00 },
-  { size: 24, label: 'Case', price: '$54.00', priceNum: 54.00 },
+  { size: 4, label: 'Taster', priceNum: 9.99 },
+  { size: 12, label: 'Regular', priceNum: 29.00 },
+  { size: 24, label: 'Case', priceNum: 54.00 },
 ]
 
 export default function AddToBagModal({ product, onClose, onAdd }) {
@@ -58,7 +59,7 @@ export default function AddToBagModal({ product, onClose, onAdd }) {
             >
               <div className="pack-option__size">{p.size}</div>
               <div className="pack-option__label">{p.label}</div>
-              <div className="pack-option__price">{p.price}</div>
+              <div className="pack-option__price">{formatMoney(p.priceNum)}</div>
             </button>
           ))}
         </div>
@@ -87,7 +88,7 @@ export default function AddToBagModal({ product, onClose, onAdd }) {
         </label>
 
         <button className="btn-atb" id="atb-confirm-btn" onClick={handleAdd}>
-          Add to Bag · ${total}
+          Add to Bag · {formatMoney(total)}
         </button>
       </div>
     </div>

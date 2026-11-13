@@ -1,11 +1,13 @@
+import { formatMoney } from '../lib/money'
+
 const PRODUCTS = [
   {
     id: 'original',
     name: 'Original',
     sub: 'Cold Brew · Decaf',
     img: '/images/can-original.png',
-    price: '$29.00',
-    perCan: '12 cans · $2.42 each',
+    price: 29,
+    perCan: `12 cans · ${formatMoney(29 / 12)} each`,
     badge: 'Bestseller',
     note: 'Bright, easy-drinking, always in season',
   },
@@ -14,8 +16,8 @@ const PRODUCTS = [
     name: 'Dark Chocolate',
     sub: 'Cold Brew · Decaf',
     img: '/images/can-dark-chocolate.png',
-    price: '$29.00',
-    perCan: '12 cans · $2.42 each',
+    price: 29,
+    perCan: `12 cans · ${formatMoney(29 / 12)} each`,
     badge: 'Deep & smooth',
     note: 'A softer finish with a little sweetness',
   },
@@ -24,8 +26,8 @@ const PRODUCTS = [
     name: 'Vanilla Oat',
     sub: 'Cold Brew · Decaf',
     img: '/images/can-vanilla-oat.png',
-    price: '$29.00',
-    perCan: '12 cans · $2.42 each',
+    price: 29,
+    perCan: `12 cans · ${formatMoney(29 / 12)} each`,
     badge: 'Oat milk',
     note: 'Creamy, balanced, and made to linger',
   },
@@ -50,7 +52,7 @@ export default function Shop({ id, onAddToBag }) {
             </div>
             <div className="product-card__details">
               <div><h3 className="product-card__name">{p.name}</h3><p className="product-card__sub">{p.note}</p></div>
-              <span className="product-card__price-main">{p.price}</span>
+              <span className="product-card__price-main">{formatMoney(p.price)}</span>
             </div>
             <div className="product-card__footer">
               <span className="product-card__price-per">{p.perCan}</span>

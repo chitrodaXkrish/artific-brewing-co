@@ -29,7 +29,7 @@ create table if not exists public.preorders (
   shipping_fee numeric(12,2) not null default 0,
   tax numeric(12,2) not null default 0,
   total numeric(12,2) not null default 0,
-  currency text not null default 'USD',
+  currency text not null default 'INR',
   created_at timestamptz not null default now()
 );
 create index if not exists preorders_created_at_idx on public.preorders (created_at desc);

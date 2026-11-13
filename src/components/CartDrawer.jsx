@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { track } from '../lib/analytics'
+import { formatMoney } from '../lib/money'
 
 const STEPS = ['Bag', 'Delivery', 'Payment', 'Review']
 
@@ -21,7 +22,7 @@ function StepBag({ cart, onRemove }) {
             <div className="cart-item__name">{item.name}</div>
             <div className="cart-item__variant">{item.pack}-Pack · {item.subscribe ? 'Subscribe & Save' : 'One-time'}</div>
             <div className="cart-item__footer">
-              <span className="cart-item__price">${item.total.toFixed(2)}</span>
+              <span className="cart-item__price">{formatMoney(item.total)}</span>
               <span className="cart-item__remove" onClick={() => onRemove(item.cartKey)}>Remove</span>
             </div>
           </div>
@@ -29,7 +30,7 @@ function StepBag({ cart, onRemove }) {
       ))}
       <div className="cart-total">
         <span>Total</span>
-        <span>${total.toFixed(2)}</span>
+        <span>{formatMoney(total)}</span>
       </div>
     </>
   )
@@ -42,20 +43,20 @@ function StepDelivery({ form, setForm, shipping, setShipping }) {
       <div className="form-row">
         <div className="form-group">
           <label className="form-label" htmlFor="first-name">First Name</label>
-          <input className="form-input" id="first-name" value={form.first} onChange={update('first')} placeholder="Jane" />
+          <input className="form-input" id="first-name" value={form.first} onChange={update('first')} />
         </div>
         <div className="form-group">
           <label className="form-label" htmlFor="last-name">Last Name</label>
-          <input className="form-input" id="last-name" value={form.last} onChange={update('last')} placeholder="Doe" />
+          <input className="form-input" id="last-name" value={form.last} onChange={update('last')} />
         </div>
       </div>
       <div className="form-group">
         <label className="form-label" htmlFor="email">Email</label>
-        <input className="form-input" id="email" type="email" value={form.email} onChange={update('email')} placeholder="you@email.com" required />
+        <input className="form-input" id="email" type="email" value={form.email} onChange={update('email')} required />
       </div>
       <div className="form-group">
         <label className="form-label" htmlFor="phone">Phone</label>
-        <input className="form-input" id="phone" type="tel" autoComplete="tel" value={form.phone} onChange={update('phone')} placeholder="+91 98765 43210" required />
+        <input className="form-input" id="phone" type="tel" autoComplete="tel" value={form.phone} onChange={update('phone')} required />
       </div>
       <div className="form-group">
         <label className="form-label" htmlFor="address">Address</label>
@@ -84,7 +85,7 @@ function StepDelivery({ form, setForm, shipping, setShipping }) {
       <div className="shipping-options">
         {[
           { id: 'standard', name: 'Standard Shipping', eta: '3–5 business days', price: 'Free' },
-          { id: 'express', name: 'Express Shipping', eta: '1–2 business days', price: '$9.99' },
+          { id: 'express', name: 'Express Shipping', eta: '1–2 business days', price: formatMoney(9.99) },
         ].map(opt => (
           <label key={opt.id} className={`shipping-option${shipping === opt.id ? ' active' : ''}`}>
             <input type="radio" name="shipping" value={opt.id} checked={shipping === opt.id} onChange={() => setShipping(opt.id)} />
@@ -125,16 +126,16 @@ function StepReview({ cart, shipping }) {
         {cart.map(item => (
           <div className="order-summary-card__row" key={item.cartKey}>
             <span>{item.name} {item.pack}-Pack ×{item.qty}</span>
-            <span>${item.total.toFixed(2)}</span>
+            <span>{formatMoney(item.total)}</span>
           </div>
         ))}
         <div className="order-summary-card__row">
           <span>Shipping</span>
-          <span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}</span>
+          <span>{shippingCost === 0 ? 'Free' : formatMoney(shippingCost)}</span>
         </div>
         <div className="order-summary-card__row order-summary-card__total">
           <span>Total</span>
-          <span>${total.toFixed(2)}</span>
+          <span>{formatMoney(total)}</span>
         </div>
       </div>
       <p className="preorder-followup">No payment has been collected. We’ll reach out before preparing or shipping your order.</p>
