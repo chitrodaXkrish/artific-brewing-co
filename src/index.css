@@ -602,8 +602,8 @@ button, input { font: inherit; }
   .nav__links--open { display: flex; flex-direction: column; align-items: stretch; gap: 0; }
   .nav__links a { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; }
   .nav__links a::after { display: none; }
-  .hero__backdrop { height: min(760px, 100svh); min-height: 620px; }
-  .hero__image { object-position: center; }
+  .hero__backdrop { height: min(760px, 100svh); min-height: 620px; background: #350616; }
+  .hero__image { object-fit: contain; object-position: center; }
   .hero__title { font-size: clamp(38px, 11vw, 58px); }
   .shop, .about, .find-us, .journal { padding: 76px 22px; }
   .origins { padding: 96px 20px 22vh; }
