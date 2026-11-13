@@ -27,8 +27,8 @@ export default function Footer() {
           )}
         </div>
         <div className="footer__links">
-          <div><h3>Explore</h3><a href="#shop">Shop all</a><a href="#origins">Our story</a></div>
-          <div><h3>Say hello</h3><a href="mailto:hello@artificbrewing.co">Email us</a><a href="#shop">Instagram ↗</a></div>
+          <div><h3>Explore</h3><a href="/#shop">Shop all</a><a href="/#origins">Our story</a><a href="/contact">Contact us</a></div>
+          <div><h3>Say hello</h3><a href="mailto:contact@artificbrewingco.shop">Email us</a><a href="tel:+917304481839">Call us</a><a href="/#shop">Instagram ↗</a></div>
         </div>
         <img className="footer__wordmark" src="/logo.svg" alt="Artific Brewing Co." loading="lazy" />
       </div>

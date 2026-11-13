@@ -9,12 +9,13 @@ export default function Nav({ itemCount, openCart }) {
       <button className="nav__menu" onClick={() => setMenuOpen(open => !open)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen}>
         <span /> <span />
       </button>
-      <a className="nav__logo" href="#home" aria-label="Artific Brewing Co. home">
+      <a className="nav__logo" href="/" aria-label="Artific Brewing Co. home">
         <img src="/logo.png" alt="Artific Brewing Co." />
       </a>
       <nav className={`nav__links${menuOpen ? ' nav__links--open' : ''}`} aria-label="Main navigation">
-        <a href="#shop" onClick={closeMenu}>Shop</a>
-        <a href="#origins" onClick={closeMenu}>Our story</a>
+        <a href="/#shop" onClick={closeMenu}>Shop</a>
+        <a href="/#origins" onClick={closeMenu}>Our story</a>
+        <a href="/contact" onClick={closeMenu}>Contact us</a>
       </nav>
       <button className="nav__bag" id="nav-bag-btn" onClick={openCart} aria-label={`Open bag, ${itemCount} items`}>
         Bag <span>{String(itemCount).padStart(2, '0')}</span>

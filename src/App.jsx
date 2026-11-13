@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Community from './components/Community'
 import Shop from './components/Shop'
 import OriginsStackSection from './components/OriginsStackSection'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 import AddToBagModal from './components/AddToBagModal'
 import CartDrawer from './components/CartDrawer'
@@ -36,18 +37,23 @@ export default function App() {
   }, [])
 
   const itemCount = cart.reduce((sum, c) => sum + c.qty, 0)
+  const isContactPage = window.location.pathname.replace(/\/+$/, '') === '/contact'
 
   return (
     <>
       <ShutterIntro />
       <Nav itemCount={itemCount} openCart={() => setCartOpen(true)} />
       <main>
-        <div className="hero-shop-stage">
-          <Hero />
-          <Community />
-          <Shop id="shop" onAddToBag={openModal} />
-        </div>
-        <OriginsStackSection />
+        {isContactPage ? <Contact /> : (
+          <>
+            <div className="hero-shop-stage">
+              <Hero />
+              <Community />
+              <Shop id="shop" onAddToBag={openModal} />
+            </div>
+            <OriginsStackSection />
+          </>
+        )}
         <Footer />
       </main>
       {modal && (
