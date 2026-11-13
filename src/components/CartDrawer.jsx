@@ -20,7 +20,7 @@ function StepBag({ cart, onRemove }) {
           <img className="cart-item__img" src={item.img} alt={item.name} />
           <div className="cart-item__info">
             <div className="cart-item__name">{item.name}</div>
-            <div className="cart-item__variant">{item.pack}-Pack · {item.subscribe ? 'Subscribe & Save' : 'One-time'}</div>
+            <div className="cart-item__variant">{item.pack} {item.pack === 1 ? 'Piece' : 'Pieces'}</div>
             <div className="cart-item__footer">
               <span className="cart-item__price">{formatMoney(item.total)}</span>
               <span className="cart-item__remove" onClick={() => onRemove(item.cartKey)}>Remove</span>
@@ -141,7 +141,7 @@ function StepReview({ cart, shipping }) {
       <div className="order-summary-card" style={{ marginTop: 24, textAlign: 'left' }}>
         {cart.map(item => (
           <div className="order-summary-card__row" key={item.cartKey}>
-            <span>{item.name} {item.pack}-Pack ×{item.qty}</span>
+            <span>{item.name} · {item.pack} {item.pack === 1 ? 'Piece' : 'Pieces'} ×{item.qty}</span>
             <span>{formatMoney(item.total)}</span>
           </div>
         ))}

@@ -2,15 +2,14 @@ import { useState, useEffect } from 'react'
 import { formatMoney } from '../lib/money'
 
 const PACKS = [
-  { size: 4, label: 'Taster', priceNum: 9.99 },
-  { size: 12, label: 'Regular', priceNum: 29.00 },
-  { size: 24, label: 'Case', priceNum: 54.00 },
+  { size: 1, label: 'Pieces', priceNum: 2.50 },
+  { size: 4, label: 'Pieces', priceNum: 9.99 },
+  { size: 12, label: 'Pieces', priceNum: 29.00 },
 ]
 
 export default function AddToBagModal({ product, onClose, onAdd }) {
   const [packIdx, setPackIdx] = useState(1)
   const [qty, setQty] = useState(1)
-  const [subscribe, setSubscribe] = useState(false)
 
   // Close on Escape
   useEffect(() => {
@@ -20,7 +19,7 @@ export default function AddToBagModal({ product, onClose, onAdd }) {
   }, [onClose])
 
   const pack = PACKS[packIdx]
-  const total = (pack.priceNum * qty * (subscribe ? 0.85 : 1)).toFixed(2)
+  const total = (pack.priceNum * qty).toFixed(2)
 
   const handleAdd = () => {
     onAdd({
@@ -30,7 +29,6 @@ export default function AddToBagModal({ product, onClose, onAdd }) {
       pack: pack.size,
       qty,
       price: pack.priceNum,
-      subscribe,
       total: parseFloat(total),
     })
   }
@@ -72,20 +70,6 @@ export default function AddToBagModal({ product, onClose, onAdd }) {
             <button className="qty-btn" onClick={() => setQty(q => q + 1)} aria-label="Increase quantity" id="qty-plus">+</button>
           </div>
         </div>
-
-        <label className="modal__subscribe" htmlFor="subscribe-checkbox">
-          <input
-            type="checkbox"
-            id="subscribe-checkbox"
-            checked={subscribe}
-            onChange={e => setSubscribe(e.target.checked)}
-          />
-          <div>
-            <div style={{ fontSize: 13, fontWeight: 600 }}>Subscribe &amp; Save</div>
-            <div style={{ fontSize: 11, color: '#888', marginTop: 2 }}>Delivered every 4 weeks · Cancel anytime</div>
-          </div>
-          <div className="modal__subscribe-save">-15%</div>
-        </label>
 
         <button className="btn-atb" id="atb-confirm-btn" onClick={handleAdd}>
           Add to Bag · {formatMoney(total)}

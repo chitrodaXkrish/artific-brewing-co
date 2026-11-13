@@ -3,7 +3,7 @@ import { supabaseRequest } from '../server/supabase.js'
 
 const text = (value, max = 200) => String(value || '').trim().slice(0, max)
 const PRODUCT_NAMES = { original: 'Original', 'dark-chocolate': 'Dark Chocolate', 'vanilla-oat': 'Vanilla Oat' }
-const PACK_PRICES = { 4: 9.99, 12: 29, 24: 54 }
+const PACK_PRICES = { 1: 2.50, 4: 9.99, 12: 29 }
 
 export default async function createPreorder(request, response) {
   if (request.method !== 'POST') {
@@ -24,17 +24,14 @@ export default async function createPreorder(request, response) {
       const productId = text(item.productId, 80)
       const pack = Number(item.pack)
       const quantity = Math.max(1, Math.min(100, Number(item.quantity) || 1))
-      const subscribe = Boolean(item.subscribe)
       const unitPrice = PACK_PRICES[pack]
-      const discountedPrice = subscribe ? unitPrice * 0.85 : unitPrice
       return {
         productId,
         name: PRODUCT_NAMES[productId],
         pack,
         quantity,
-        unitPrice: Number(discountedPrice.toFixed(2)),
-        subscribe,
-        lineTotal: Number((discountedPrice * quantity).toFixed(2)),
+        unitPrice,
+        lineTotal: Number((unitPrice * quantity).toFixed(2)),
       }
     })
     if (!text(customer.firstName, 80) || !text(customer.lastName, 80) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !/^\+91\d{10}$/.test(phone) || !text(shipping.address, 250) || !text(shipping.city, 100) || !text(shipping.postalCode, 32) || !items.length) {

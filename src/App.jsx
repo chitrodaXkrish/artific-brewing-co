@@ -57,7 +57,6 @@ export default function App() {
       pack: item.pack,
       quantity: item.qty,
       unitPrice: item.price,
-      subscribe: item.subscribe,
       lineTotal: item.total,
     }))
     const response = await fetch('/api/preorders', {
