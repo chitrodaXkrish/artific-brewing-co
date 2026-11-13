@@ -49,7 +49,6 @@ export default function Shop({ id, onAddToBag }) {
         {PRODUCTS.map(p => (
           <article className="product-card" key={p.id} id={`product-${p.id}`}>
             <div className={`product-card__image product-card__image--${p.id}`}>
-              <span className="product-card__badge">{p.badge}</span>
               <img src={p.img} alt={`Artific ${p.name} cold brew can`} loading="lazy" />
             </div>
             <div className="product-card__details">
