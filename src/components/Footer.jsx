@@ -30,8 +30,8 @@ export default function Footer() {
           <div><h3>Explore</h3><a href="#shop">Shop all</a><a href="#origins">Our story</a></div>
           <div><h3>Say hello</h3><a href="mailto:hello@artificbrewing.co">Email us</a><a href="#shop">Instagram ↗</a></div>
         </div>
+        <img className="footer__wordmark" src="/logo.svg" alt="Artific Brewing Co." loading="lazy" />
       </div>
-      <img className="footer__wordmark" src="/logo.svg" alt="Artific Brewing Co." loading="lazy" />
       <div className="footer__bottom"><span>© {now.getFullYear()} Artific Brewing Co.</span><span>Made slowly. Enjoyed often.</span><a href="#home">Back to top ↑</a></div>
     </footer>
   )
