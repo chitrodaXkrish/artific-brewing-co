@@ -50,7 +50,7 @@ export default async function handleContact(request, response) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: process.env.RESEND_FROM_EMAIL || 'Artific Brewing Co. <onboarding@resend.dev>',
+        from: process.env.RESEND_FROM_EMAIL || 'Artific Brewing Co. <contact@artificbrewingco.shop>',
         to: [INBOX],
         reply_to: email,
         subject: `Website contact from ${name}`,
@@ -59,7 +59,12 @@ export default async function handleContact(request, response) {
     })
 
     if (!resendResponse.ok) {
-      console.error('Resend contact email failed with status:', resendResponse.status)
+      const providerError = await resendResponse.json().catch(() => ({}))
+      console.error('Resend contact email rejected:', {
+        status: resendResponse.status,
+        code: providerError.name || providerError.code || 'unknown',
+        message: providerError.message || 'No provider details returned.',
+      })
       return respond(response, 502, { error: 'We couldn’t send your message. Please try again or contact us by phone.' })
     }
 
