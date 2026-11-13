@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { track } from '../lib/analytics'
 
 const STEPS = ['Bag', 'Delivery', 'Payment', 'Review']
 
@@ -50,20 +51,34 @@ function StepDelivery({ form, setForm, shipping, setShipping }) {
       </div>
       <div className="form-group">
         <label className="form-label" htmlFor="email">Email</label>
-        <input className="form-input" id="email" type="email" value={form.email} onChange={update('email')} placeholder="you@email.com" />
+        <input className="form-input" id="email" type="email" value={form.email} onChange={update('email')} placeholder="you@email.com" required />
+      </div>
+      <div className="form-group">
+        <label className="form-label" htmlFor="phone">Phone</label>
+        <input className="form-input" id="phone" type="tel" autoComplete="tel" value={form.phone} onChange={update('phone')} placeholder="+91 98765 43210" required />
       </div>
       <div className="form-group">
         <label className="form-label" htmlFor="address">Address</label>
-        <input className="form-input" id="address" value={form.address} onChange={update('address')} placeholder="123 Corner Store Lane" />
+        <input className="form-input" id="address" autoComplete="street-address" value={form.address} onChange={update('address')} placeholder="Street address and apartment" required />
       </div>
       <div className="form-row">
         <div className="form-group">
           <label className="form-label" htmlFor="city">City</label>
-          <input className="form-input" id="city" value={form.city} onChange={update('city')} placeholder="Melbourne" />
+          <input className="form-input" id="city" autoComplete="address-level2" value={form.city} onChange={update('city')} placeholder="City" required />
         </div>
         <div className="form-group">
+          <label className="form-label" htmlFor="region">State / region</label>
+          <input className="form-input" id="region" autoComplete="address-level1" value={form.region} onChange={update('region')} placeholder="State or region" required />
+        </div>
+      </div>
+      <div className="form-row">
+        <div className="form-group">
           <label className="form-label" htmlFor="postcode">Postcode</label>
-          <input className="form-input" id="postcode" value={form.postcode} onChange={update('postcode')} placeholder="3000" />
+          <input className="form-input" id="postcode" autoComplete="postal-code" value={form.postcode} onChange={update('postcode')} placeholder="Postcode" required />
+        </div>
+        <div className="form-group">
+          <label className="form-label" htmlFor="country">Country</label>
+          <input className="form-input" id="country" autoComplete="country-name" value={form.country} onChange={update('country')} placeholder="Country" required />
         </div>
       </div>
       <div className="shipping-options">
@@ -85,41 +100,11 @@ function StepDelivery({ form, setForm, shipping, setShipping }) {
   )
 }
 
-function StepPayment({ payTab, setPayTab, promo, setPromo }) {
+function StepPayment() {
   return (
-    <div>
-      <div className="payment-tabs">
-        {['Card', 'Apple Pay', 'PayPal'].map(t => (
-          <button key={t} className={`payment-tab${payTab === t ? ' active' : ''}`} onClick={() => setPayTab(t)} id={`pay-tab-${t.toLowerCase().replace(' ', '-')}`}>{t}</button>
-        ))}
-      </div>
-      {payTab === 'Card' && (
-        <>
-          <div className="form-group">
-            <label className="form-label" htmlFor="card-number">Card Number</label>
-            <input className="form-input" id="card-number" placeholder="4242 4242 4242 4242" maxLength={19} />
-          </div>
-          <div className="form-row">
-            <div className="form-group">
-              <label className="form-label" htmlFor="card-expiry">Expiry</label>
-              <input className="form-input" id="card-expiry" placeholder="MM/YY" maxLength={5} />
-            </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="card-cvc">CVC</label>
-              <input className="form-input" id="card-cvc" placeholder="123" maxLength={4} />
-            </div>
-          </div>
-        </>
-      )}
-      {payTab !== 'Card' && (
-        <div style={{ padding: '32px 0', textAlign: 'center', color: '#aaa', fontSize: 13 }}>
-          {payTab} flow would open here in production.
-        </div>
-      )}
-      <div className="promo-row">
-        <input className="promo-input" placeholder="Promo code" value={promo} onChange={e => setPromo(e.target.value)} id="promo-code-input" />
-        <button className="promo-btn" id="apply-promo-btn">Apply</button>
-      </div>
+    <div className="preorder-payment-note">
+      <p className="eyebrow">Payment comes later</p>
+      <p>Your pre-order request will be sent to our team. We’ll contact you to confirm availability and arrange payment. No card details are collected here.</p>
     </div>
   )
 }
@@ -131,10 +116,10 @@ function StepReview({ cart, shipping }) {
   return (
     <div className="confirmation">
       <div className="confirmation__icon">✓</div>
-      <div className="confirmation__title">Order Placed!</div>
+      <div className="confirmation__title">Pre-order received!</div>
       <p className="confirmation__sub">
-        We're getting your No Caff ready.<br />
-        You'll get a confirmation at your email.
+        Our team will confirm your request<br />
+        and follow up by email.
       </p>
       <div className="order-summary-card" style={{ marginTop: 24, textAlign: 'left' }}>
         {cart.map(item => (
@@ -152,31 +137,17 @@ function StepReview({ cart, shipping }) {
           <span>${total.toFixed(2)}</span>
         </div>
       </div>
-      <div className="tracker">
-        <div className="tracker__dots">
-          {['📦', '🚚', '✅'].map((emoji, i) => (
-            <>
-              {i > 0 && <div key={`line-${i}`} className={`tracker__line${i === 1 ? ' done' : ''}`} />}
-              <div key={emoji} className={`tracker__dot${i === 0 ? ' active' : ''}`}>{emoji}</div>
-            </>
-          ))}
-        </div>
-        <div className="tracker__label-row" style={{ marginTop: 8 }}>
-          {['Order Placed', 'Out for Delivery', 'Delivered'].map(l => (
-            <div key={l} className="tracker__lbl">{l}</div>
-          ))}
-        </div>
-      </div>
+      <p className="preorder-followup">No payment has been collected. We’ll reach out before preparing or shipping your order.</p>
     </div>
   )
 }
 
-export default function CartDrawer({ cart, onClose, onRemove }) {
+export default function CartDrawer({ cart, onClose, onRemove, onPlaceOrder, onClearCart }) {
   const [step, setStep] = useState(0)
-  const [form, setForm] = useState({ first: '', last: '', email: '', address: '', city: '', postcode: '' })
+  const [form, setForm] = useState({ first: '', last: '', email: '', phone: '', address: '', city: '', region: '', postcode: '', country: 'India' })
   const [shipping, setShipping] = useState('standard')
-  const [payTab, setPayTab] = useState('Card')
-  const [promo, setPromo] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
 
   useEffect(() => {
     const onKey = (e) => { if (e.key === 'Escape') onClose() }
@@ -184,12 +155,30 @@ export default function CartDrawer({ cart, onClose, onRemove }) {
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const canProceed = step === 0 ? cart.length > 0 : true
+  const deliveryComplete = Boolean(form.first.trim() && form.last.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) && form.phone.trim() && form.address.trim() && form.city.trim() && form.region.trim() && form.postcode.trim() && form.country.trim())
+  const canProceed = step === 0 ? cart.length > 0 : step === 1 ? deliveryComplete : true
 
-  const btnLabel = ['Proceed to Delivery', 'Proceed to Payment', 'Place Order', 'Close'][step]
-  const handleNext = () => {
-    if (step === 3) { onClose(); return }
-    setStep(s => s + 1)
+  const btnLabel = ['Proceed to Delivery', 'Proceed to Payment', submitting ? 'Sending…' : 'Submit Pre-order', 'Close'][step]
+  const handleNext = async () => {
+    if (step === 3) { onClearCart?.(); onClose(); return }
+    if (step === 0) track('checkout_start', { items: cart.length })
+    if (step === 1) track('shipping_info', { method: shipping })
+    if (step < 2) { setStep(s => s + 1); return }
+
+    setSubmitting(true)
+    setSubmitError('')
+    try {
+      await onPlaceOrder({
+        customer: { firstName: form.first, lastName: form.last, email: form.email, phone: form.phone },
+        shipping: { address: form.address, city: form.city, region: form.region, postalCode: form.postcode, country: form.country, method: shipping },
+        paymentMethod: 'To be arranged',
+      })
+      setStep(3)
+    } catch (error) {
+      setSubmitError(error.message || 'Could not save your pre-order. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -215,8 +204,9 @@ export default function CartDrawer({ cart, onClose, onRemove }) {
         <div className="cart-drawer__body">
           {step === 0 && <StepBag cart={cart} onRemove={onRemove} />}
           {step === 1 && <StepDelivery form={form} setForm={setForm} shipping={shipping} setShipping={setShipping} />}
-          {step === 2 && <StepPayment payTab={payTab} setPayTab={setPayTab} promo={promo} setPromo={setPromo} />}
+          {step === 2 && <StepPayment />}
           {step === 3 && <StepReview cart={cart} shipping={shipping} />}
+          {submitError && <p className="preorder-error" role="alert">{submitError}</p>}
         </div>
 
         <div className="cart-drawer__footer">
@@ -224,8 +214,8 @@ export default function CartDrawer({ cart, onClose, onRemove }) {
             className="btn-primary"
             id="cart-proceed-btn"
             onClick={handleNext}
-            disabled={!canProceed}
-            style={{ opacity: canProceed ? 1 : 0.4 }}
+            disabled={!canProceed || submitting}
+            style={{ opacity: canProceed && !submitting ? 1 : 0.4 }}
           >
             {btnLabel}
           </button>

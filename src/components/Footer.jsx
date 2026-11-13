@@ -1,14 +1,34 @@
 import { useState } from 'react'
+import { track } from '../lib/analytics'
 
 const now = new Date()
 
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [joined, setJoined] = useState(false)
+  const [signupError, setSignupError] = useState('')
+  const [signupBusy, setSignupBusy] = useState(false)
 
-  const handleJoin = (e) => {
+  const handleJoin = async (e) => {
     e.preventDefault()
-    if (email.trim()) setJoined(true)
+    if (!email.trim()) return
+    setSignupBusy(true)
+    setSignupError('')
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Could not join the list.')
+      track('waitlist_signup')
+      setJoined(true)
+    } catch (error) {
+      setSignupError(error.message || 'Could not join the list. Please try again.')
+    } finally {
+      setSignupBusy(false)
+    }
   }
 
   return (
@@ -22,9 +42,10 @@ export default function Footer() {
             <form className="footer__form" onSubmit={handleJoin}>
               <label className="sr-only" htmlFor="footer-email-input">Your email address</label>
               <input id="footer-email-input" type="email" placeholder="Your email address" value={email} onChange={e => setEmail(e.target.value)} required />
-              <button id="footer-join-btn" type="submit" aria-label="Join the mailing list">↗</button>
+              <button id="footer-join-btn" type="submit" aria-label="Join the mailing list" disabled={signupBusy}>{signupBusy ? '…' : '↗'}</button>
             </form>
           )}
+          {signupError && <p className="footer__success" role="alert">{signupError}</p>}
         </div>
         <div className="footer__links">
           <div><h3>Explore</h3><a href="/#shop">Shop all</a><a href="/#origins">Our story</a><a href="/contact">Contact us</a></div>
