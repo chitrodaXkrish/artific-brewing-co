@@ -43,7 +43,6 @@ export default function Shop({ id, onAddToBag }) {
         </div>
         <div className="shop__preorder-note">
           <span>PRE-ORDER ONLY</span>
-          <p>Send a pre-order request and our team will follow up to confirm availability and arrange payment and delivery.</p>
         </div>
       </div>
       <div className="shop__grid shop__content">
