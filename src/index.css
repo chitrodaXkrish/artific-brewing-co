@@ -432,6 +432,21 @@ button, input { font: inherit; }
 .button--light { background: var(--cream); color: var(--black); }
 .button--light:hover { background: #e8cba9; }
 .shop, .about, .find-us, .journal { min-height: 0; padding: clamp(76px, 10vw, 138px) clamp(24px, 7.2vw, 112px); }
+.waitlist-section { padding: clamp(76px, 10vw, 132px) clamp(24px, 7.2vw, 112px); background: var(--blue); color: var(--cream); text-align: center; }
+.waitlist-section__inner { max-width: 760px; margin: auto; }
+.waitlist-section .eyebrow { margin-bottom: 22px; color: #e8cba9; }
+.waitlist-section h2 { margin: 0; font-family: var(--font-serif); font-size: clamp(44px, 7vw, 82px); font-weight: 400; line-height: .98; }
+.waitlist-section h2 em { font-weight: 400; }
+.waitlist-section__copy { max-width: 520px; margin: 24px auto 34px; color: rgba(255, 248, 237, .78); font-size: clamp(15px, 1.5vw, 18px); line-height: 1.6; }
+.waitlist-section__form { display: flex; max-width: 600px; margin: auto; border-bottom: 1px solid rgba(255, 248, 237, .65); }
+.waitlist-section__form input { flex: 1; min-width: 0; padding: 16px 8px 16px 0; border: 0; outline: 0; background: transparent; color: var(--cream); font-size: 14px; }
+.waitlist-section__form input::placeholder { color: rgba(255, 248, 237, .62); }
+.waitlist-section__form button { display: inline-flex; align-items: center; gap: 14px; padding: 0 0 0 18px; color: var(--cream); font-size: 11px; font-weight: 700; letter-spacing: .1em; white-space: nowrap; }
+.waitlist-section__form button span { font-size: 19px; }
+.waitlist-section__form button:disabled { opacity: .65; cursor: wait; }
+.waitlist-section__status, .waitlist-section__error { margin: 24px 0 0; font-size: 14px; }
+.waitlist-section__status { color: #e8cba9; }
+.waitlist-section__error { color: #ffd0c8; }
 .community { position: relative; z-index: 2; isolation: isolate; overflow: visible; padding: clamp(88px, 9vw, 132px) clamp(24px, 6vw, 96px); background: transparent; color: var(--blue); }
 .community__cloud { position: absolute; z-index: 1; top: clamp(-410px, -29vw, -280px); left: 0; width: 100%; height: auto; pointer-events: none; user-select: none; will-change: transform; }
 .community__cloud img { display: block; width: 100%; height: auto; object-fit: cover; pointer-events: none; }

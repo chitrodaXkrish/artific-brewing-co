@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Community from './components/Community'
 import Shop from './components/Shop'
 import OriginsStackSection from './components/OriginsStackSection'
+import WaitlistSection from './components/WaitlistSection'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import AddToBagModal from './components/AddToBagModal'
@@ -84,6 +85,7 @@ export default function App() {
               <Shop id="shop" onAddToBag={openModal} />
             </div>
             <OriginsStackSection />
+            <WaitlistSection />
           </>
         )}
         <Footer />
