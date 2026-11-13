@@ -42,7 +42,7 @@ export default async function createPreorder(request, response) {
     }
 
     const subtotal = items.reduce((sum, item) => sum + item.lineTotal, 0)
-    const shippingFee = shipping.method === 'express' ? 9.99 : 0
+    const shippingFee = 0
     const row = await supabaseRequest('preorders', {
       method: 'POST',
       body: {
@@ -56,7 +56,7 @@ export default async function createPreorder(request, response) {
           region: text(shipping.region, 100),
           postalCode: text(shipping.postalCode, 32),
           country: text(shipping.country, 80),
-          method: shipping.method === 'express' ? 'Express' : 'Standard',
+          method: 'Standard',
         },
         payment_method: text(payload.paymentMethod, 40) || 'Pending',
         payment_status: 'not_collected',

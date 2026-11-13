@@ -102,7 +102,6 @@ function StepDelivery({ form, setForm, shipping, setShipping }) {
       <div className="shipping-options">
         {[
           { id: 'standard', name: 'Standard Shipping', eta: '3–5 business days', price: 'Free' },
-          { id: 'express', name: 'Express Shipping', eta: '1–2 business days', price: formatMoney(9.99) },
         ].map(opt => (
           <label key={opt.id} className={`shipping-option${shipping === opt.id ? ' active' : ''}`}>
             <input type="radio" name="shipping" value={opt.id} checked={shipping === opt.id} onChange={() => setShipping(opt.id)} />
@@ -129,7 +128,7 @@ function StepPayment() {
 
 function StepReview({ cart, shipping }) {
   const subtotal = cart.reduce((s, c) => s + c.total, 0)
-  const shippingCost = shipping === 'express' ? 9.99 : 0
+  const shippingCost = 0
   const total = subtotal + shippingCost
   return (
     <div className="confirmation">
