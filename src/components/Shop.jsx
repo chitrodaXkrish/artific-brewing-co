@@ -41,9 +41,7 @@ export default function Shop({ id, onAddToBag }) {
           <p className="eyebrow">Find your everyday</p>
           <h2 className="shop__title">Good things<br /><em>in the fridge.</em></h2>
         </div>
-        <div className="shop__preorder-note">
-          <span>PRE-ORDER ONLY</span>
-        </div>
+        <div className="shop__preorder-banner">PRE-ORDERS ONLY</div>
       </div>
       <div className="shop__grid shop__content">
         {PRODUCTS.map(p => (
