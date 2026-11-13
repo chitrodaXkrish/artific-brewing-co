@@ -424,6 +424,8 @@ button, input { font: inherit; }
 .hero__title { position: absolute; z-index: 1; top: 50%; left: 50%; display: grid; gap: .04em; width: max-content; max-width: 90%; margin: 0; transform: translate(-50%, -50%); color: var(--cream); font-family: var(--font-serif); font-size: clamp(42px, 8vw, 108px); font-weight: 400; line-height: .88; text-align: center; text-shadow: 0 2px 18px rgba(53, 6, 22, .58); }
 .hero__title span { font-style: normal; }
 .hero__title em { font-style: italic; font-weight: 400; }
+.hero__cta { position: absolute; z-index: 2; top: 70%; left: 50%; display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 18px; padding: 0 22px; transform: translateX(-50%); background: var(--cream); color: var(--blue); font-size: 11px; font-weight: 700; letter-spacing: .1em; white-space: nowrap; pointer-events: auto; transition: background .2s, transform .2s; }
+.hero__cta:hover { transform: translate(-50%, -2px); background: #e8cba9; }
 .eyebrow { margin: 0 0 19px; color: var(--ink-soft); font-size: 10px; font-weight: 700; letter-spacing: .14em; line-height: 1.4; text-transform: uppercase; }
 .about__intro h2, .section-heading h2, .find-us__top h2, .footer__signup h2 { margin: 0; font-family: var(--font-serif); font-size: clamp(56px, 7.3vw, 102px); font-weight: 400; letter-spacing: 0; line-height: .96; }
 .about h2 em, .section-heading h2 em, .find-us h2 em, .footer h2 em { font-weight: 400; }
