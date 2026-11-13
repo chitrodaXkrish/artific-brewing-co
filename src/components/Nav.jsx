@@ -10,7 +10,7 @@ export default function Nav({ itemCount, openCart }) {
         <span /> <span />
       </button>
       <a className="nav__logo" href="#home" aria-label="Artific Brewing Co. home">
-        <img src="/logo.svg" alt="Artific Brewing Co." />
+        <img src="/logo.png" alt="Artific Brewing Co." />
       </a>
       <nav className={`nav__links${menuOpen ? ' nav__links--open' : ''}`} aria-label="Main navigation">
         <a href="#shop" onClick={closeMenu}>Shop</a>
