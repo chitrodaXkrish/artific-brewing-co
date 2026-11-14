@@ -4,7 +4,7 @@ const PRODUCTS = [
   {
     id: 'desi-coffee',
     name: 'Desi Coffee',
-    img: '/images/can-original.png',
+    img: '/product/desi-coffee.png',
     prices: { 1: 79, 4: 299, 12: 899 },
     badge: 'Classic',
     note: 'A familiar favourite, reimagined with smooth coffee character and a balanced, refreshing finish.',
@@ -12,7 +12,7 @@ const PRODUCTS = [
   {
     id: 'noir-americano',
     name: 'Noir Americano',
-    img: '/images/can-original.png',
+    img: '/product/noir-americano.png',
     prices: { 1: 79, 4: 299, 12: 899 },
     badge: 'Bold & smooth',
     note: 'A crisp, chilled take on the Americano, with a clean coffee profile and a bold, refreshing finish.',
@@ -20,7 +20,7 @@ const PRODUCTS = [
   {
     id: 'mocha-amaro',
     name: 'Mocha Amaro',
-    img: '/images/can-dark-chocolate.png',
+    img: '/product/mocha-amaro.png',
     prices: { 1: 119, 4: 399, 12: 1129 },
     badge: 'Coffee & chocolate',
     note: 'Coffee and chocolate notes come together in a rounded, layered drink with a smooth, satisfying finish.',
@@ -28,7 +28,7 @@ const PRODUCTS = [
   {
     id: 'vanilla-aurea',
     name: 'Vanilla Aurea',
-    img: '/images/can-vanilla-oat.png',
+    img: '/product/vanilla-aurea.png',
     prices: { 1: 99, 4: 349, 12: 999 },
     badge: 'Soft vanilla',
     note: 'Smooth coffee meets gentle vanilla notes for an aromatic cup with a balanced, softly sweet finish.',
